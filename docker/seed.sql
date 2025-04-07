@@ -1,0 +1,4 @@
+CREATE DATABASE zstart;
+CREATE DATABASE dog;
+
+\c dog;

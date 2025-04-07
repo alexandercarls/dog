@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "app/main.tsx"
+  ],
+  "project": ["**/*.{tsx,ts}"],
+  "ignore": ["app/schema.ts", "drizzle.config.ts", "app/vite-env.d.ts"],
+  "ignoreDependencies": ["@babel/preset-typescript", "babel-plugin-react-compiler", "tailwindcss-animate"]
+}
