@@ -2,23 +2,23 @@ import { Switch, Route } from "wouter"
 import { Zero } from "@rocicorp/zero"
 import { schema } from "./schema"
 import { ZeroProvider } from "@rocicorp/zero/react"
-import posthog from "posthog-js"
+// import posthog from "posthog-js"
 import { useEffect } from "react"
 import { create } from "zustand"
 import { Index } from "./routes/index/route"
 import "./app.css"
 
-function PosthogInit() {
-  useEffect(() => {
-    posthog.init("phc_QI5FO8rh3mwacv5T4e9A59zOmvxtim9B04hXhpkXL2B", {
-      // api_host: "/ingest",
-      ui_host: "https://eu.posthog.com",
-      person_profiles: "always"
-    })
-  }, [])
+// function PosthogInit() {
+//   useEffect(() => {
+//     posthog.init("phc_QI5FO8rh3mwacv5T4e9A59zOmvxtim9B04hXhpkXL2B", {
+//       // api_host: "/ingest",
+//       ui_host: "https://eu.posthog.com",
+//       person_profiles: "always"
+//     })
+//   }, [])
 
-  return null
-}
+//   return null
+// }
 
 type ZeroStore = {
   z: Zero<typeof schema> | null
@@ -43,6 +43,12 @@ export default function App() {
   const { z, createZero } = useZeroStore()
 
   useEffect(() => {
+    z?.query.funktionskreis
+      .related("verhalten", (q) => q.orderBy("name", "asc"))
+      .orderBy("order", "asc").preload()
+  }, [z])
+
+  useEffect(() => {
     // Initialize with guest user - you can change this as needed
     console.log("createZero")
     createZero("guest")
@@ -59,7 +65,7 @@ export default function App() {
             </Route>
           </Switch>
       </ZeroProvider>
-      {import.meta.env.PROD && <PosthogInit />}
+      {/* {import.meta.env.PROD && <PosthogInit />} */}
     </>
   )
 }
