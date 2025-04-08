@@ -22,9 +22,18 @@ export const Index: FC = () => {
   }
 
 
+
   return (
     <>
       <div>Index</div>
+      <button onClick={async () => {
+        const inspector = await z.inspect();
+        const client = inspector.client;
+        
+        // All raw k/v data currently synced to client
+        console.log('client map:');
+        console.log(await client.map());
+      }}>Inspector</button>
       <table>
         <thead>
           <tr>

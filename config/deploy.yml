@@ -1,5 +1,5 @@
-service: ro
-image: alca42/ro
+service: dog
+image: alca42/dog
 
 servers:
   web:
@@ -7,7 +7,7 @@ servers:
 
 proxy:
   ssl: true
-  host: canis.run
+  host: ethogram.dog
   app_port: 4000
 
 registry:
@@ -19,7 +19,7 @@ registry:
 builder:
   arch: amd64
   args:
-    VITE_PUBLIC_SERVER: "https://api.canis.run"
+    VITE_PUBLIC_SERVER: "https://z.ethogram.dog"
 
 accessories:
   zero:
@@ -28,7 +28,8 @@ accessories:
       - web
     env:
       clear:
-        ZERO_REPLICA_FILE: "/data/zstart_replica.db"
+        ZERO_REPLICA_FILE: "/data/zdog_replica.db"
+        ZERO_APP_ID: "dog"
       secret:
         - ZERO_UPSTREAM_DB
         - ZERO_CVR_DB
@@ -36,7 +37,7 @@ accessories:
         - ZERO_AUTH_SECRET
     proxy:
       ssl: true
-      host: api.canis.run
+      host: z.ethogram.dog
       app_port: 4848
       healthcheck:
         interval: 5
@@ -45,25 +46,25 @@ accessories:
     directories:
       - data:/data
 
-  postgres:
-    image: postgres:17.4-alpine
-    roles:
-      - web
-    env:
-      clear:
-        POSTGRES_USER: "ro"
-        POSTGRES_DB: "ro"
-        POSTGRES_HOST_AUTH_METHOD: "md5"
-        POSTGRES_INITDB_ARGS: "--auth-host=md5"
-      secret:
-        - POSTGRES_PASSWORD
-    cmd: |
-      postgres \
-        -c wal_level=logical \
-        -c max_wal_senders=10 \
-        -c max_replication_slots=5 \
-        -c hot_standby=on \
-        -c hot_standby_feedback=on
-    port: "5432:5432"
-    directories:
-      - data:/var/lib/postgresql/data
+  # postgres:
+  #   image: postgres:17.4-alpine
+  #   roles:
+  #     - web
+  #   env:
+  #     clear:
+  #       POSTGRES_USER: "dog"
+  #       POSTGRES_DB: "dog"
+  #       POSTGRES_HOST_AUTH_METHOD: "md5"
+  #       POSTGRES_INITDB_ARGS: "--auth-host=md5"
+  #     secret:
+  #       - POSTGRES_PASSWORD
+  #   cmd: |
+  #     postgres \
+  #       -c wal_level=logical \
+  #       -c max_wal_senders=10 \
+  #       -c max_replication_slots=5 \
+  #       -c hot_standby=on \
+  #       -c hot_standby_feedback=on
+  #   port: "5432:5432"
+  #   directories:
+  #     - data:/var/lib/postgresql/data
