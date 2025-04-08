@@ -43,9 +43,13 @@ export default function App() {
   const { z, createZero } = useZeroStore()
 
   useEffect(() => {
+    if (!z) return
+    console.log("useEffect preloading")
     z?.query.funktionskreis
-      .related("verhalten", (q) => q.orderBy("name", "asc"))
-      .orderBy("order", "asc").preload()
+      // .related("verhalten", (q) => q.orderBy("name", "asc"))
+      .orderBy("order", "asc").preload().complete.then(() => {
+        console.log("complete")
+      })
   }, [z])
 
   useEffect(() => {

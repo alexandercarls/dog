@@ -7,7 +7,7 @@ export const Index: FC = () => {
 
   const [funktionskreise, { type }] = useQuery(
     z.query.funktionskreis
-      .related("verhalten", (q) => q.orderBy("name", "asc"))
+      // .related("verhalten", (q) => q.orderBy("name", "asc"))
       .orderBy("order", "asc")
   )
   // const [verhalten, { type }] = useQuery(
@@ -34,23 +34,23 @@ export const Index: FC = () => {
         console.log(await client.map());
       }}>Inspector</button>
       <pre>
-        {JSON.stringify(funktionskreise, null, 2)}
+        {/* {JSON.stringify(funktionskreise, null, 2)} */}
       </pre>
       <table>
         <thead>
           <tr>
             <th>Funktionskreis</th>
-            <th>Verhalten</th>
+            {/* <th>Verhalten</th> */}
           </tr>
         </thead>
         <tbody>
           {funktionskreise.map((funktionskreis) => (
-            funktionskreis.verhalten.map((verhalten) => (
-              <tr key={verhalten.id}>
+            // funktionskreis.verhalten.map((verhalten) => (
+              <tr key={funktionskreis.id}>
                 <td>{funktionskreis.name}</td>
-                <td>{verhalten.name}</td>
+                {/* <td>{verhalten.name}</td> */}
               </tr>
-            ))
+            // ))
           ))}
         </tbody>
       </table>

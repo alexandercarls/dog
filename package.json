@@ -16,7 +16,7 @@
     "check:unused": "DATABASE_URL=FOO NODE_ENV=production knip --max-issues 1",
     "check:unused:fix": "knip --fix",
     "update-permissions": "npx zero-deploy-permissions -p ./app/schema.ts",
-    "update-permissions:prod": "npx zero-deploy-permissions -p ./app/schema.ts",
+    "update-permissions:prod": "bunx zero-deploy-permissions -p ./app/schema.ts",
     "start": "vite",
     "typecheck": "tsc -b",
     "lint": "eslint ."
