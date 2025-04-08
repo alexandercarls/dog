@@ -28,8 +28,8 @@ accessories:
       - web
     env:
       clear:
-        ZERO_REPLICA_FILE: "/data/zdog_replica.db"
-        ZERO_APP_ID: "dog"
+        ZERO_REPLICA_FILE: "/data/replica.db"
+        # ZERO_APP_ID: "dog"
       secret:
         - ZERO_UPSTREAM_DB
         - ZERO_CVR_DB
@@ -46,25 +46,25 @@ accessories:
     directories:
       - data:/data
 
-  # postgres:
-  #   image: postgres:17.4-alpine
-  #   roles:
-  #     - web
-  #   env:
-  #     clear:
-  #       POSTGRES_USER: "dog"
-  #       POSTGRES_DB: "dog"
-  #       POSTGRES_HOST_AUTH_METHOD: "md5"
-  #       POSTGRES_INITDB_ARGS: "--auth-host=md5"
-  #     secret:
-  #       - POSTGRES_PASSWORD
-  #   cmd: |
-  #     postgres \
-  #       -c wal_level=logical \
-  #       -c max_wal_senders=10 \
-  #       -c max_replication_slots=5 \
-  #       -c hot_standby=on \
-  #       -c hot_standby_feedback=on
-  #   port: "5432:5432"
-  #   directories:
-  #     - data:/var/lib/postgresql/data
+  postgres:
+    image: postgres:17.4-alpine
+    roles:
+      - web
+    env:
+      clear:
+        POSTGRES_USER: "dog"
+        POSTGRES_DB: "dog"
+        POSTGRES_HOST_AUTH_METHOD: "md5"
+        POSTGRES_INITDB_ARGS: "--auth-host=md5"
+      secret:
+        - POSTGRES_PASSWORD
+    cmd: |
+      postgres \
+        -c wal_level=logical \
+        -c max_wal_senders=10 \
+        -c max_replication_slots=5 \
+        -c hot_standby=on \
+        -c hot_standby_feedback=on
+    port: "5444:5432"
+    directories:
+      - data:/var/lib/postgresql/data

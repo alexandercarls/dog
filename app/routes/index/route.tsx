@@ -22,7 +22,6 @@ export const Index: FC = () => {
   }
 
 
-
   return (
     <>
       <div>Index</div>
@@ -34,6 +33,9 @@ export const Index: FC = () => {
         console.log('client map:');
         console.log(await client.map());
       }}>Inspector</button>
+      <pre>
+        {JSON.stringify(funktionskreise, null, 2)}
+      </pre>
       <table>
         <thead>
           <tr>
