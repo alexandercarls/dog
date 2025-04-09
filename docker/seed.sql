@@ -1,4 +1,2 @@
-CREATE DATABASE zstart;
-CREATE DATABASE dog;
+-- CREATE DATABASE zstart;
 
-\c dog;
