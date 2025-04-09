@@ -4,8 +4,8 @@ import * as t from "drizzle-orm/pg-core"
 
 export const funktionskreisTable = table("funktionskreis", {
   id: t.uuid().primaryKey().notNull(),
-  name: t.varchar({ length: 255 }).notNull().unique(),
-  order: t.integer().notNull().default(0).unique(),
+  name: t.varchar({ length: 255 }).notNull(),
+  order: t.integer().notNull().default(0),
   createdAt: t
     .timestamp()
     .default(sql`now()`)
