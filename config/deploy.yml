@@ -24,7 +24,7 @@ builder:
 
 accessories:
   zero:
-    image: rocicorp/zero:0.18.2025040300
+    image: rocicorp/zero:0.19.2025040900
     roles:
       - web
     env:

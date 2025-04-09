@@ -24,7 +24,7 @@
     "@rocicorp/zero-sqlite3"
   ],
   "dependencies": {
-    "@rocicorp/zero": "0.18.2025040300",
+    "@rocicorp/zero": "0.19.2025040900",
     "@vitejs/plugin-react": "^4.3.4",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
