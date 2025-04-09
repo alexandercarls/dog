@@ -6,11 +6,11 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     react({
-      // include: "**/*.tsx",
-      // babel: {
-      //   presets: ["@babel/preset-typescript"],
-      //   plugins: ["babel-plugin-react-compiler"]
-      // }
+      include: "**/*.tsx",
+      babel: {
+        presets: ["@babel/preset-typescript"],
+        plugins: ["babel-plugin-react-compiler"]
+      }
     })
   ]
 })

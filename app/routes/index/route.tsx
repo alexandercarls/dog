@@ -1,12 +1,12 @@
 import { type FC } from "react"
-import { useQuery, useZero } from "@rocicorp/zero/react"
-import { Schema } from "../../schema"
+import { useQuery } from "@rocicorp/zero/react"
+import { useZ } from "../../hooks/use-z"
 
 export const Index: FC = () => {
-  const z = useZero<Schema>()
+  const z = useZ()
 
   const [funktionskreise, { type }] = useQuery(
-    z.query.funktionskreis.orderBy("order", "asc"),
+    z.query.funktionskreis.related("verhalten", (q) => q.orderBy("name", "asc")),
     { ttl: "forever" }
   )
 
@@ -14,33 +14,22 @@ export const Index: FC = () => {
 
   return (
     <>
-      <div>Index</div>
-      <button
-        onClick={async () => {
-          const inspector = await z.inspect()
-          const client = inspector.client
-
-          // All raw k/v data currently synced to client
-          console.log("client map:")
-          console.log(await client.map())
-        }}
-      >
-        Inspector
-      </button>
       <table>
         <thead>
           <tr>
             <th>Funktionskreis</th>
+            <th>Verhalten</th>
           </tr>
         </thead>
         <tbody>
-          {funktionskreise.map((funktionskreis) => (
-            <tr key={funktionskreis.name}>
-              <td>
-                {funktionskreis.id} {funktionskreis.name}
-              </td>
-            </tr>
-          ))}
+          {funktionskreise.map((funktionskreis) =>
+            funktionskreis.verhalten.map((verhalten) => (
+              <tr key={verhalten.id}>
+                <td>{funktionskreis.name}</td>
+                <td>{verhalten.name}</td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </>
