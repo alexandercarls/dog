@@ -1,6 +1,6 @@
 services:
   zstart_postgres:
-    image: postgres:17.4-alpine
+    image: postgres:16.2-alpine
     shm_size: 1g
     user: postgres
     restart: always
@@ -13,7 +13,7 @@ services:
       - 5430:5432
     environment:
       POSTGRES_USER: user
-      POSTGRES_DB: dog
+      POSTGRES_DB: postgres
       POSTGRES_PASSWORD: password
     command: |
       postgres 

@@ -5,5 +5,5 @@
   ],
   "project": ["**/*.{tsx,ts}"],
   "ignore": ["app/schema.ts", "drizzle.config.ts", "app/vite-env.d.ts"],
-  "ignoreDependencies": ["@babel/preset-typescript", "babel-plugin-react-compiler", "tailwindcss-animate"]
+  "ignoreDependencies": ["@babel/preset-typescript", "babel-plugin-react-compiler"]
 }

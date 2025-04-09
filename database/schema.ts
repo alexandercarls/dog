@@ -43,22 +43,23 @@ export const kategorieTable = table("kategorie", {
     .notNull()
 })
 
-// TODO: Model category hierarchy?
-// TODO: Explain category as einzelverhalten?
-
-// export const verhaltenKategorieTable = table("verhaltenKategorie", {
-//   id: t.uuid().primaryKey().notNull(),
-//   verhaltenId: t.uuid().references(() => verhaltenTable.id).notNull(),
-//   kategorieId: t.uuid().references(() => kategorieTable.id).notNull(),
-//   createdAt: t.timestamp().default(sql`now()`).notNull(),
-//   updatedAt: t.timestamp().default(sql`now()`).notNull()
-// })
-
 export const verhaltenFunktionskreisTable = table("verhaltenFunktionskreis", {
   id: t.uuid().primaryKey().notNull(),
-  funktionskreisId: t.uuid().references(() => funktionskreisTable.id).notNull(),
-  verhaltenId: t.uuid().references(() => verhaltenTable.id).notNull(),
+  funktionskreisId: t
+    .uuid()
+    .references(() => funktionskreisTable.id)
+    .notNull(),
+  verhaltenId: t
+    .uuid()
+    .references(() => verhaltenTable.id)
+    .notNull(),
   kategorieId: t.uuid().references(() => kategorieTable.id),
-  createdAt: t.timestamp().default(sql`now()`).notNull(),
-  updatedAt: t.timestamp().default(sql`now()`).notNull()
+  createdAt: t
+    .timestamp()
+    .default(sql`now()`)
+    .notNull(),
+  updatedAt: t
+    .timestamp()
+    .default(sql`now()`)
+    .notNull()
 })

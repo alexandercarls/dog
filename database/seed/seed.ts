@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/postgres-js"
 import postgres from "postgres"
-import { env } from "../../app/env.server"
+import { env } from "../env.server"
 import { schema } from "../../app/schema"
 import { seed as seedEthogram } from "./ethogram"
 
